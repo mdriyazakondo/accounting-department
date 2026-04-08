@@ -1,7 +1,7 @@
-"use client"; // Framer motion এর জন্য এটা অবশ্যই লাগবে
+"use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants, Transition } from "framer-motion"; // Transition ইমপোর্ট করা হয়েছে
 import { FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import {
   HiOutlineChatBubbleLeftRight,
@@ -9,11 +9,17 @@ import {
 } from "react-icons/hi2";
 
 const Principals = () => {
-  // Animation Variants
-  const fadeIn = {
+  // ১. ভেরিয়েন্টের জন্য সঠিক টাইপ সেট করা হয়েছে
+  const fadeIn: Variants = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" },
+  };
+
+  // ২. transition-এর জন্য "as const" ব্যবহার করা হয়েছে যাতে TypeScript ভ্যালু লক করে দেয়
+  // অথবা সরাসরি Transition টাইপ ব্যবহার করা যায়
+  const transitionSettings: Transition = {
+    duration: 0.8,
+    ease: "easeOut",
   };
 
   return (
@@ -72,8 +78,11 @@ const Principals = () => {
           {/* Right Side: Message Content */}
           <div className="w-full lg:w-1/2 space-y-8">
             <motion.div
-              {...fadeIn}
+              initial="initial"
+              whileInView="whileInView"
               viewport={{ once: true }}
+              variants={fadeIn}
+              transition={transitionSettings} // এখানে আর এরর আসবে না
               className="relative"
             >
               <HiOutlineChatBubbleLeftRight
@@ -133,7 +142,7 @@ const Principals = () => {
               {/* Button & Socials with Hover Effects */}
               <div className="flex flex-wrap items-center gap-6 pt-4">
                 <motion.button
-                  whileHover={{ scale: 1.05, backgroundColor: "#059669" }} // Emerald-600 on hover
+                  whileHover={{ scale: 1.05, backgroundColor: "#059669" }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-blue-900 text-white font-black text-xs uppercase tracking-widest rounded-full shadow-lg transition-colors"
                 >

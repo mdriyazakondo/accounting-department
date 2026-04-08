@@ -1,14 +1,13 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-// Local icons via react-icons
+import { motion, Variants } from "framer-motion"; // Ekhene Variants import kora hoyeche
 import { HiOutlineLightBulb, HiOutlineBadgeCheck } from "react-icons/hi";
 import { BiBuildingHouse, BiSupport } from "react-icons/bi";
 
 const AboutSection = () => {
-  // Animation Variants
-  const containerVariants = {
+  // Animation Variants - Explicitly typed as Variants
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -18,7 +17,7 @@ const AboutSection = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -27,7 +26,7 @@ const AboutSection = () => {
     },
   };
 
-  const imageVariants = {
+  const imageVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
@@ -38,7 +37,6 @@ const AboutSection = () => {
 
   return (
     <section className="w-full py-24 bg-white overflow-hidden">
-      {/* 1400px Container */}
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-20">
           {/* Left Side: Visual Grid */}
@@ -49,7 +47,7 @@ const AboutSection = () => {
             variants={containerVariants}
             className="w-full lg:w-1/2 grid grid-cols-2 gap-6 relative"
           >
-            {/* Decorative Background Square (Navy instead of Amber for 2-color consistency) */}
+            {/* Decorative Background */}
             <motion.div
               animate={{ rotate: [0, 10, 0], scale: [1, 1.1, 1] }}
               transition={{ duration: 10, repeat: Infinity }}
@@ -142,7 +140,6 @@ const AboutSection = () => {
               transparency.
             </motion.p>
 
-            {/* Feature List */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <motion.div
                 variants={itemVariants}
@@ -181,7 +178,6 @@ const AboutSection = () => {
               </motion.div>
             </div>
 
-            {/* Signature/CTA */}
             <motion.div
               variants={itemVariants}
               className="pt-10 flex flex-wrap items-center gap-8 border-t border-slate-100"
@@ -193,10 +189,8 @@ const AboutSection = () => {
               >
                 Read Our Story
               </motion.button>
-
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-slate-200"></div>{" "}
-                {/* Placeholder for profile pic */}
+                <div className="w-12 h-12 rounded-full bg-slate-200"></div>
                 <div>
                   <p className="text-sm font-black text-blue-900 uppercase tracking-tight">
                     Dr. Robert Harrison
